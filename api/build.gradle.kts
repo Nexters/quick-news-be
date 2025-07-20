@@ -6,6 +6,7 @@ dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
     annotationProcessor(libs.spring.boot.configuration.processor)
 
     testImplementation(libs.bundles.testing)

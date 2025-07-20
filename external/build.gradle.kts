@@ -31,6 +31,8 @@ dependencies {
     testImplementation(libs.de.flapdoodle.embed.mongo.spring)
     testRuntimeOnly(libs.junit.platform.launcher)
 
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
     // JPA and Database dependencies
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.postgresql)
