@@ -21,24 +21,18 @@ class FcmToken(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    
     @Column(name = "user_id", nullable = false)
     val userId: Long,
-    
     @Column(name = "device_token", nullable = false, length = 500)
     val deviceToken: String,
-    
     @Enumerated(EnumType.STRING)
     @Column(name = "device_type", nullable = false)
     val deviceType: DeviceType,
-    
     @Column(name = "is_active", nullable = false)
     val isActive: Boolean = true,
-    
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),
-    
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     val updatedAt: LocalDateTime = LocalDateTime.now()
@@ -48,12 +42,11 @@ class FcmToken(
         if (other !is FcmToken) return false
         return userId == other.userId && deviceToken == other.deviceToken
     }
-    
-    override fun hashCode(): Int {
-        return Objects.hash(userId, deviceToken)
-    }
+
+    override fun hashCode(): Int = Objects.hash(userId, deviceToken)
 }
 
 enum class DeviceType {
-    ANDROID, IOS
+    ANDROID,
+    IOS
 }

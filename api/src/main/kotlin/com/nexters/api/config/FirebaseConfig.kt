@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct
 
 @Configuration
 class FirebaseConfig {
-
     private val logger = LoggerFactory.getLogger(FirebaseConfig::class.java)
 
     @Value("\${firebase.service-account-key}")
@@ -25,21 +24,23 @@ class FirebaseConfig {
         try {
             // 이미 초기화되어 있는지 확인
             if (FirebaseApp.getApps().isEmpty()) {
-
                 if (firebaseServiceAccountKey.isEmpty()) {
                     throw RuntimeException("FIREBASE_SERVICE_ACCOUNT_KEY 환경 변수가 설정되지 않았습니다.")
                 }
 
                 logger.info("Firebase 초기화 중...")
 
-                val credentials = GoogleCredentials.fromStream(
-                    ByteArrayInputStream(firebaseServiceAccountKey.toByteArray())
-                )
+                val credentials =
+                    GoogleCredentials.fromStream(
+                        ByteArrayInputStream(firebaseServiceAccountKey.toByteArray())
+                    )
 
-                val options = FirebaseOptions.builder()
-                    .setCredentials(credentials)
-                    .setProjectId(firebaseProjectId)
-                    .build()
+                val options =
+                    FirebaseOptions
+                        .builder()
+                        .setCredentials(credentials)
+                        .setProjectId(firebaseProjectId)
+                        .build()
 
                 FirebaseApp.initializeApp(options)
                 logger.info("Firebase Admin SDK 초기화 완료 - 프로젝트: $firebaseProjectId")
